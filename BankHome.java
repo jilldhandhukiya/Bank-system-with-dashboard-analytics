@@ -25,10 +25,10 @@ import javax.swing.table.DefaultTableModel;
 import java.util.Date;
 
 public class BankHome {
-    private static final ImageIcon AccountImg = new ImageIcon("D:\\Codes\\Bank\\BankMain\\src\\account.png");
+    private static final ImageIcon AccountImg = new ImageIcon("account.png");
     static JPanel top, rightside, center;
     static JFrame mainframe;
-    static ImageIcon icon1 = new ImageIcon("D:\\Codes\\Bank\\BankMain\\src\\mainlablebank.png");
+    static ImageIcon icon1 = new ImageIcon("mainlablebank.png");
     static JLabel imageLabel1, imageLabel2, imageLable3, ctime;
     static JButton Accountcenter, accountb, Trasfer, Card, transactions;
     static Connection conn;
@@ -133,7 +133,7 @@ public class BankHome {
 
         accountb = new JButton("ACCOUNT");
         accountb.setOpaque(true);
-        ImageIcon accIcon = new ImageIcon("D:\\Codes\\Bank\\BankMain\\src\\account.gif");
+        ImageIcon accIcon = new ImageIcon("account.gif");
         accountb.setFocusable(false);
         accountb.setForeground(new Color(0, 0, 0));
         accountb.setBackground(new Color(229, 228, 226));
@@ -143,7 +143,7 @@ public class BankHome {
 
         Trasfer = new JButton("TRANSFER");
         Trasfer.setOpaque(true);
-        ImageIcon transfericon = new ImageIcon("D:\\Codes\\Bank\\BankMain\\src\\transfer.gif");
+        ImageIcon transfericon = new ImageIcon("transfer.gif");
 
         Trasfer.setFocusable(false);
         Trasfer.setForeground(new Color(0, 0, 0));
@@ -153,7 +153,7 @@ public class BankHome {
         Trasfer.addActionListener(e1 -> TransferButton());
 
         Card = new JButton(" CARD'S ");
-        ImageIcon cardGif = new ImageIcon("D:\\Codes\\Bank\\BankMain\\src\\cards.gif");
+        ImageIcon cardGif = new ImageIcon("cards.gif");
         JLabel cardgiflabel = new JLabel(cardGif);
         cardgiflabel.setOpaque(false);
         cardgiflabel.setBackground(new Color(229, 228, 226));
@@ -167,7 +167,7 @@ public class BankHome {
         Card.addActionListener(e -> Cards());
 
         transactions = new JButton(" TRANSACTION'S ");
-        ImageIcon t = new ImageIcon("D:\\Codes\\Bank\\BankMain\\src\\transaction-History.gif");
+        ImageIcon t = new ImageIcon("transaction-History.gif");
         transactions.setOpaque(true);
         transactions.setFocusable(false);
         transactions.setForeground(new Color(0, 0, 0));
@@ -769,7 +769,7 @@ public class BankHome {
         showcard.setBounds(460, 20, 400, 280);
         showcard.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0), 8));
         showcard.setBorder(BorderFactory.createLineBorder(Color.orange, 8, true));
-        ImageIcon card = new ImageIcon("D:\\Codes\\Bank\\BankMain\\src\\Card.png");
+        ImageIcon card = new ImageIcon("Card.png");
         JLabel cardBackground = new JLabel(card);
 
         cardBackground.setOpaque(true);
@@ -813,7 +813,7 @@ public class BankHome {
             }
         });
 
-        ImageIcon rupay = new ImageIcon("D:\\Codes\\Bank\\BankMain\\src\\rupay.png");
+        ImageIcon rupay = new ImageIcon("rupay.png");
 
         Image image = rupay.getImage();
         BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null),
@@ -1051,8 +1051,8 @@ public class BankHome {
         center.repaint();
         center.revalidate();
 
-        ImageIcon table = new ImageIcon("D:\\Codes\\Bank\\BankMain\\src\\Table.png");
-        ImageIcon Graph = new ImageIcon("D:\\Codes\\Bank\\BankMain\\src\\Graph.png");
+        ImageIcon table = new ImageIcon("Table.png");
+        ImageIcon Graph = new ImageIcon("Graph.png");
 
         JButton Switch = new JButton();
         Switch.setOpaque(true);
@@ -1075,7 +1075,7 @@ public class BankHome {
                     graphs.setBounds(0,0,1250,580);
                     graphs.setBackground(Color.gray);
 
-                    ImageIcon barcharticon = new ImageIcon("D:\\Codes\\Bank\\BankMain\\src\\barcharticon.png");
+                    ImageIcon barcharticon = new ImageIcon("barcharticon.png");
                     JButton Bar = new JButton();
                     Bar.setIcon(barcharticon);
                     Bar.setOpaque(true);
@@ -1120,7 +1120,7 @@ public class BankHome {
                         }
                     });
 
-                    ImageIcon Linecharticon = new ImageIcon("D:\\Codes\\Bank\\BankMain\\src\\linecharticon.png");
+                    ImageIcon Linecharticon = new ImageIcon("linecharticon.png");
                     JButton Line = new JButton();
                     Line.setIcon(Linecharticon);
                     Line.setOpaque(true);
@@ -1227,7 +1227,7 @@ public class BankHome {
                         }
                     });
 
-                    ImageIcon Piecharticon = new ImageIcon("D:\\Codes\\Bank\\BankMain\\src\\piechartIcon.png");
+                    ImageIcon Piecharticon = new ImageIcon("piechartIcon.png");
                     JButton Pie = new JButton();
                     Pie.setIcon(Piecharticon);
                     Pie.setOpaque(true);
