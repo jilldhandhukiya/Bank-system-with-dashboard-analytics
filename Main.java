@@ -7,12 +7,12 @@ public class Main implements ActionListener {
     protected static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     protected static final String DB_URL = "jdbc:mysql://localhost:3306/Bank?useSSL=false";
     protected static final String USER = "root";
-    protected static final String PASS = "Jill@admin123";
+    protected static final String PASS = "";  // Put Your Own Password
     static String enteredUsername;
     static String enteredPassword;
     static JFrame frame;
     static private double userbal = 0;
-    static ImageIcon bankIcon = new ImageIcon("D:\\Codes\\Bank\\BankMain\\src\\mainlablebank.png");
+    static ImageIcon bankIcon = new ImageIcon("mainlablebank.png");
     static String Firsnameofuser = "";
 
     public static void main(String[] args) {
@@ -92,8 +92,8 @@ public class Main implements ActionListener {
 
 class LoginFrame extends JFrame implements ActionListener {
     static LoginFrame loginFrame;
-    static ImageIcon eyeClosed = new ImageIcon("D:\\Codes\\Bank\\BankMain\\src\\eye-opened.png");
-    static ImageIcon eyeOpen = new ImageIcon("D:\\Codes\\Bank\\BankMain\\src\\eye-closed.png");
+    static ImageIcon eyeClosed = new ImageIcon("eye-opened.png");
+    static ImageIcon eyeOpen = new ImageIcon("eye-closed.png");
     Container container = getContentPane();
     static JLabel userLabel = new JLabel("USER ID : ");
     static JLabel passwordLabel = new JLabel("PASSWORD : ");
@@ -108,7 +108,7 @@ class LoginFrame extends JFrame implements ActionListener {
         loginFrame = this;
         setLayoutManager();
         setLocationAndSize();
-        ImageIcon backgroundIcon = new ImageIcon("D:\\Codes\\Bank\\BankMain\\src\\Bank.png");
+        ImageIcon backgroundIcon = new ImageIcon("Bank.png");
         backgroundLabel = new JLabel(backgroundIcon);
         backgroundLabel.setBounds(0, 0, 1400, 700);
         container.add(backgroundLabel);
