@@ -7,28 +7,25 @@ import org.jfree.chart.plot.PiePlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
-
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.general.PieDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
+import java.awt.event.*;
+import java.awt.image.*;
 import java.sql.*;
-import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
+import java.text.*;
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.table.*;
 import java.util.Date;
 
 public class BankHome {
-    private static final ImageIcon AccountImg = new ImageIcon("account.png");
+    static final ImageIcon AccountImg = new ImageIcon("D:\\Codes\\Bank\\BankMain\\src\\account.png");
     static JPanel top, rightside, center;
     static JFrame mainframe;
-    static ImageIcon icon1 = new ImageIcon("mainlablebank.png");
+    static ImageIcon icon1 = new ImageIcon("D:\\Codes\\Bank\\BankMain\\src\\mainlablebank.png");
     static JLabel imageLabel1, imageLabel2, imageLable3, ctime;
     static JButton Accountcenter, accountb, Trasfer, Card, transactions;
     static Connection conn;
@@ -46,8 +43,10 @@ public class BankHome {
     static String AccType, AccOpdate, fname, lname, email, uaddress, dob, USERUPIID;
     static JTextField Rec_Bank_no, Bamount, ifsc_code;
     static JPanel TransactionsChart = new JPanel();
+
     public BankHome()
-    // public static void main(String[] args)    //To see the frame again and again for testing
+    // public static void main(String[] args) //To see the frame again and again for
+    // testing
     {
         SQLConnection();
 
@@ -64,7 +63,6 @@ public class BankHome {
         });
         thread.setDaemon(true); // Set the thread as a daemon
         thread.start();
-
         mainframe = new JFrame("NATIONAL BANK");
         mainframe.setSize(1300, 700);
         mainframe.setResizable(true);
@@ -133,7 +131,7 @@ public class BankHome {
 
         accountb = new JButton("ACCOUNT");
         accountb.setOpaque(true);
-        ImageIcon accIcon = new ImageIcon("account.gif");
+        ImageIcon accIcon = new ImageIcon("D:\\Codes\\Bank\\BankMain\\src\\account.gif");
         accountb.setFocusable(false);
         accountb.setForeground(new Color(0, 0, 0));
         accountb.setBackground(new Color(229, 228, 226));
@@ -143,7 +141,7 @@ public class BankHome {
 
         Trasfer = new JButton("TRANSFER");
         Trasfer.setOpaque(true);
-        ImageIcon transfericon = new ImageIcon("transfer.gif");
+        ImageIcon transfericon = new ImageIcon("D:\\Codes\\Bank\\BankMain\\src\\transfer.gif");
 
         Trasfer.setFocusable(false);
         Trasfer.setForeground(new Color(0, 0, 0));
@@ -153,7 +151,7 @@ public class BankHome {
         Trasfer.addActionListener(e1 -> TransferButton());
 
         Card = new JButton(" CARD'S ");
-        ImageIcon cardGif = new ImageIcon("cards.gif");
+        ImageIcon cardGif = new ImageIcon("D:\\Codes\\Bank\\BankMain\\src\\cards.gif");
         JLabel cardgiflabel = new JLabel(cardGif);
         cardgiflabel.setOpaque(false);
         cardgiflabel.setBackground(new Color(229, 228, 226));
@@ -167,7 +165,7 @@ public class BankHome {
         Card.addActionListener(e -> Cards());
 
         transactions = new JButton(" TRANSACTION'S ");
-        ImageIcon t = new ImageIcon("transaction-History.gif");
+        ImageIcon t = new ImageIcon("D:\\Codes\\Bank\\BankMain\\src\\transaction-History.gif");
         transactions.setOpaque(true);
         transactions.setFocusable(false);
         transactions.setForeground(new Color(0, 0, 0));
@@ -261,6 +259,7 @@ public class BankHome {
         uAddressLabel = new JLabel(
                 "<html><body><center 'style=font-size:120%'>ADDRESS : " + uaddress + "</center></body></html>");
         uAddressLabel.setFont(new Font("Arian", Font.BOLD, 15));
+        UserInfo.add(uAddressLabel);
 
         uContactNoLabel = new JLabel("<html><body><center 'style=font-size:120%'>CONTACT NO : " + UserContactNumber
                 + "</center></body></html>");
@@ -578,8 +577,6 @@ public class BankHome {
                                     } catch (SQLException e) {
                                         e.printStackTrace();
                                     }
-
-                                    // INSERT statement
                                     String insertQuery = "INSERT INTO transactions (AccountNumber, TransactionType, Amount, TransactionDateTime, Balancetype, Remark, Bank_Type, Senders_Upi_id) VALUES (?, 'Upi', ?, NOW(), 0, 'UPI Payment', 1, ?)";
                                     try (PreparedStatement insertStatement1 = conn.prepareStatement(insertQuery)) {
                                         // Replace with the actual account number, amount, and upiId
@@ -588,6 +585,8 @@ public class BankHome {
                                         insertStatement1.setString(3, ID);
                                         insertStatement1.executeUpdate();
                                     } catch (SQLException e) {
+                                        JOptionPane.showMessageDialog(null, "Error", "Error",
+                                                JOptionPane.ERROR_MESSAGE);
                                         e.printStackTrace();
                                     }
 
@@ -656,7 +655,7 @@ public class BankHome {
                                 count = rs.getInt("Isthere");
                             }
                             if (count == 0) {
-                                String insertTransactionQuery = "INSERT INTO transactions(AccountNumber, TransactionType, Amount, TransactionDateTime, Balancetype, Bank_Type, Senders_acc_no,ifsc) VALUES (?, 'BANK-Transfer', ?, NOW(), 0, 0, ?,?)";
+                                String insertTransactionQuery = "INSERT INTO transactions(AccountNumber, TransactionType, Amount, TransactionDateTime, Balancetype, Bank_Type, Senders_acc_no,ifsc) VALUES (?, 'Bank-Transfer', ?, NOW(), 0, 0, ?,?)";
                                 try (PreparedStatement insertTransactionStmt = conn
                                         .prepareStatement(insertTransactionQuery)) {
                                     insertTransactionStmt.setInt(1, AccountNumber);
@@ -674,8 +673,10 @@ public class BankHome {
                                         int updateResult = updateBalanceStmt.executeUpdate();
 
                                         if (insertResult > 0 && updateResult > 0) {
+                                            accountb.doClick();
                                             JOptionPane.showMessageDialog(null, "Payment Successful", "Sent",
                                                     JOptionPane.PLAIN_MESSAGE);
+
                                         } else {
                                             JOptionPane.showMessageDialog(null, "Failed to process the payment",
                                                     "Error", JOptionPane.ERROR_MESSAGE);
@@ -712,7 +713,7 @@ public class BankHome {
                                     }
 
                                     // INSERT statement
-                                    String insertQuery = "INSERT INTO transactions (AccountNumber, TransactionType, Amount, TransactionDateTime, Balancetype, Remark, Bank_Type, Senders_acc_no,ifsc) VALUES (?, 'Bank-Transfer', ?, NOW(), 0, 'Bank-Transfer', 1, ?,'NA0909');";
+                                    String insertQuery = "INSERT INTO transactions (AccountNumber, TransactionType, Amount, TransactionDateTime, Balancetype, Remark, Bank_Type, Senders_acc_no,ifsc) VALUES (?, 'Bank-Transfer', ?, NOW(), 0, 'Bank-Transfer', 1, ?,'NA09090');";
                                     try (PreparedStatement insertStatement1 = conn.prepareStatement(insertQuery)) {
 
                                         insertStatement1.setInt(1, AccountNumber);
@@ -724,7 +725,7 @@ public class BankHome {
                                         e.printStackTrace();
                                     }
 
-                                    String insertQuery2 = "INSERT INTO transactions (AccountNumber, TransactionType, Amount, TransactionDateTime, Balancetype, Remark, Bank_Type, Senders_acc_no,ifsc) VALUES (?, 'Bank-Transfer', ?, NOW(), 1 , 'BANK-TRANSFER', 1, ?,'NA09090');";
+                                    String insertQuery2 = "INSERT INTO transactions (AccountNumber, TransactionType, Amount, TransactionDateTime, Balancetype, Remark, Bank_Type, Senders_acc_no,ifsc) VALUES (?, 'Bank-Transfer', ?, NOW(), 1 , 'Bank-Transfer', 1, ?,'NA09090');";
                                     try (PreparedStatement insertStatement2 = conn.prepareStatement(insertQuery2)) {
                                         insertStatement2.setInt(1, r_acc_no);
                                         insertStatement2.setDouble(2, amount);
@@ -769,7 +770,7 @@ public class BankHome {
         showcard.setBounds(460, 20, 400, 280);
         showcard.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0), 8));
         showcard.setBorder(BorderFactory.createLineBorder(Color.orange, 8, true));
-        ImageIcon card = new ImageIcon("Card.png");
+        ImageIcon card = new ImageIcon("D:\\Codes\\Bank\\BankMain\\src\\Card.png");
         JLabel cardBackground = new JLabel(card);
 
         cardBackground.setOpaque(true);
@@ -813,7 +814,7 @@ public class BankHome {
             }
         });
 
-        ImageIcon rupay = new ImageIcon("rupay.png");
+        ImageIcon rupay = new ImageIcon("D:\\Codes\\Bank\\BankMain\\src\\rupay.png");
 
         Image image = rupay.getImage();
         BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null),
@@ -924,9 +925,9 @@ public class BankHome {
                     // CardChartPanel.setBackground(Color.BLACK);
                     CardChartPanel.setBounds(600, 110, 650, 500);
                     DefaultCategoryDataset dataset = createDatasetCards();
-                    // Create chart
+
                     JFreeChart chart = ChartFactory.createLineChart(
-                            "Card Expense", // Chart title
+                            "Card Expense", // title
                             "Date", // X-Axis Label
                             "Amount", // Y-Axis Label
                             dataset, PlotOrientation.VERTICAL, true, true, true);
@@ -1040,19 +1041,21 @@ public class BankHome {
         }
         return dataset;
     }
+
     static JPanel exp = new JPanel();
     static JPanel exp1 = new JPanel();
     static JPanel rec = new JPanel();
     static JPanel rec1 = new JPanel();
     static JPanel pie3d = new JPanel();
     static JPanel piePanel = new JPanel();
+
     private static void TrasactionsButton() {
         center.removeAll();
         center.repaint();
         center.revalidate();
 
-        ImageIcon table = new ImageIcon("Table.png");
-        ImageIcon Graph = new ImageIcon("Graph.png");
+        ImageIcon table = new ImageIcon("D:\\Codes\\Bank\\BankMain\\src\\Table.png");
+        ImageIcon Graph = new ImageIcon("D:\\Codes\\Bank\\BankMain\\src\\Graph.png");
 
         JButton Switch = new JButton();
         Switch.setOpaque(true);
@@ -1065,22 +1068,22 @@ public class BankHome {
 
         Switch.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                 JPanel graphs = new JPanel(null);
+                JPanel graphs = new JPanel(null);
                 if (Switch.getIcon() == Graph) {
                     Switch.setIcon(table);
                     pie3d.setVisible(false);
                     TransactionData.removeAll();
                     TransactionData.repaint();
 
-                    graphs.setBounds(0,0,1250,580);
+                    graphs.setBounds(0, 0, 1250, 580);
                     graphs.setBackground(Color.gray);
 
-                    ImageIcon barcharticon = new ImageIcon("barcharticon.png");
+                    ImageIcon barcharticon = new ImageIcon("D:\\Codes\\Bank\\BankMain\\src\\barcharticon.png");
                     JButton Bar = new JButton();
                     Bar.setIcon(barcharticon);
                     Bar.setOpaque(true);
                     Bar.setFocusable(false);
-                    Bar.setBounds(230,10,60,60);
+                    Bar.setBounds(230, 10, 60, 60);
                     Bar.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
@@ -1093,23 +1096,23 @@ public class BankHome {
 
                             exp1 = new JPanel();
                             rec1 = new JPanel();
-                            rec1.setBounds(625,90,600,470);
-                            exp1.setBounds(20,90,600,470);
-
+                            rec1.setBounds(625, 90, 600, 470);
+                            exp1.setBounds(20, 90, 600, 470);
 
                             CategoryDataset dataset = BarfetchTransactionData(false);
 
-                            JFreeChart chart = ChartFactory.createBarChart("Expend", "Types", "Total Amount", dataset, PlotOrientation.VERTICAL, true, true, false);
+                            JFreeChart chart = ChartFactory.createBarChart("Expend", "Types", "Total Amount", dataset,
+                                    PlotOrientation.VERTICAL, true, true, false);
 
                             ChartPanel chartPanel = new ChartPanel(chart);
                             chartPanel.setPreferredSize(new Dimension(600, 400));
 
                             exp1.add(chartPanel);
 
-
                             CategoryDataset dataset1 = BarfetchTransactionData(true);
 
-                            JFreeChart chart1 = ChartFactory.createBarChart("Incomes", "Types", "Total Amount", dataset1, PlotOrientation.VERTICAL, true, true, false);
+                            JFreeChart chart1 = ChartFactory.createBarChart("Incomes", "Types", "Total Amount",
+                                    dataset1, PlotOrientation.VERTICAL, true, true, false);
 
                             ChartPanel chartPanel1 = new ChartPanel(chart1);
                             chartPanel1.setPreferredSize(new Dimension(600, 400));
@@ -1120,12 +1123,12 @@ public class BankHome {
                         }
                     });
 
-                    ImageIcon Linecharticon = new ImageIcon("linecharticon.png");
+                    ImageIcon Linecharticon = new ImageIcon("D:\\Codes\\Bank\\BankMain\\src\\linecharticon.png");
                     JButton Line = new JButton();
                     Line.setIcon(Linecharticon);
                     Line.setOpaque(true);
                     Line.setFocusable(false);
-                    Line.setBounds(580,10,60,60);
+                    Line.setBounds(580, 10, 60, 60);
                     Line.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
@@ -1141,9 +1144,9 @@ public class BankHome {
                             exp = new JPanel();
                             rec = new JPanel();
 
-
                             XYSeriesCollection dataset = new XYSeriesCollection();
-                            JFreeChart chart = ChartFactory.createXYLineChart("Transaction Type", "Transaction ID", "Amount", dataset, PlotOrientation.VERTICAL,true,true,false);
+                            JFreeChart chart = ChartFactory.createXYLineChart("Transaction Type", "Transaction ID",
+                                    "Amount", dataset, PlotOrientation.VERTICAL, true, true, false);
                             ChartPanel chartPanel = new ChartPanel(chart);
 
                             JButton upiButton = new JButton("UPI");
@@ -1166,10 +1169,15 @@ public class BankHome {
                             AllExp.setFocusable(false);
                             AllExp.setBackground(new Color(150, 150, 111));
 
-                            upiButton.addActionListener(ef -> updateChart("Upi",dataset,chart,false,"Expenditure Through Upi"));
-                            bankTransferButton.addActionListener(ed -> updateChart("Bank-Transfer",dataset,chart,false,"Expenditure Through Bank-Transfer"));
-                            cardButton.addActionListener(er -> updateChart("CARD",dataset,chart,false,"Expenditure Through CARD"));
-                            AllExp.addActionListener(ae ->updateChart("SELECT TransactionID, Amount FROM Transactions WHERE AccountNumber = ? AND BalanceType = 0;",dataset,chart,"ALL Expenditure's"));
+                            upiButton.addActionListener(
+                                    ef -> updateChart("Upi", dataset, chart, false, "Expenditure Through Upi"));
+                            bankTransferButton.addActionListener(ed -> updateChart("Bank-Transfer", dataset, chart,
+                                    false, "Expenditure Through Bank-Transfer"));
+                            cardButton.addActionListener(
+                                    er -> updateChart("CARD", dataset, chart, false, "Expenditure Through CARD"));
+                            AllExp.addActionListener(ae -> updateChart(
+                                    "SELECT TransactionID, Amount FROM Transactions WHERE AccountNumber = ? AND BalanceType = 0;",
+                                    dataset, chart, "ALL Expenditure's"));
 
                             JPanel buttonPanel = new JPanel();
                             buttonPanel.add(upiButton);
@@ -1181,7 +1189,8 @@ public class BankHome {
                             exp.add(chartPanel, BorderLayout.CENTER);
 
                             XYSeriesCollection dataset1 = new XYSeriesCollection();
-                            JFreeChart chart1 = ChartFactory.createXYLineChart("Transaction Type", "Transaction ID", "Amount", dataset1, PlotOrientation.VERTICAL,true,true,false);
+                            JFreeChart chart1 = ChartFactory.createXYLineChart("Transaction Type", "Transaction ID",
+                                    "Amount", dataset1, PlotOrientation.VERTICAL, true, true, false);
                             ChartPanel chartPanel1 = new ChartPanel(chart1);
 
                             JButton upiButton1 = new JButton("UPI");
@@ -1194,32 +1203,35 @@ public class BankHome {
                             bankTransferButton1.setFocusable(false);
                             bankTransferButton1.setOpaque(true);
 
-
                             JButton AllExp1 = new JButton("ALL");
                             AllExp1.setOpaque(true);
                             AllExp1.setFocusable(false);
                             AllExp1.setBackground(new Color(150, 150, 111));
 
-                            upiButton1.addActionListener(ef -> updateChart("Upi",dataset1,chart1,true,"Received In Upi Id"));
-                            bankTransferButton1.addActionListener(ed -> updateChart("Bank-Transfer",dataset1,chart1,true,"Received Through Bank Transfer"));
-                            AllExp1.addActionListener(ae ->updateChart("SELECT TransactionID, Amount FROM Transactions WHERE AccountNumber = ? AND BalanceType = 1;",dataset1,chart1,"Received By Total"));
+                            upiButton1.addActionListener(
+                                    ef -> updateChart("Upi", dataset1, chart1, true, "Received In Upi Id"));
+                            bankTransferButton1.addActionListener(ed -> updateChart("Bank-Transfer", dataset1, chart1,
+                                    true, "Received Through Bank Transfer"));
+                            AllExp1.addActionListener(ae -> updateChart(
+                                    "SELECT TransactionID, Amount FROM Transactions WHERE AccountNumber = ? AND BalanceType = 1;",
+                                    dataset1, chart1, "Received By Total"));
 
                             JPanel buttonPanel1 = new JPanel();
                             buttonPanel1.add(upiButton1);
                             buttonPanel1.add(bankTransferButton1);
                             buttonPanel1.add(AllExp1);
 
-                            chartPanel1.setPreferredSize(new Dimension(550,420));
+                            chartPanel1.setPreferredSize(new Dimension(550, 420));
                             rec.add(buttonPanel1, BorderLayout.NORTH);
                             rec.add(chartPanel1, BorderLayout.CENTER);
                             rec.add(chartPanel1);
 
-                            exp.setBounds(20,90,600,470);
+                            exp.setBounds(20, 90, 600, 470);
                             exp.setBackground(Color.gray);
-                            chartPanel.setPreferredSize(new Dimension(550,420));
+                            chartPanel.setPreferredSize(new Dimension(550, 420));
                             exp.add(chartPanel);
 
-                            rec.setBounds(625,90,600,470);
+                            rec.setBounds(625, 90, 600, 470);
                             rec.setBackground(Color.gray);
 
                             graphs.add(exp);
@@ -1227,12 +1239,12 @@ public class BankHome {
                         }
                     });
 
-                    ImageIcon Piecharticon = new ImageIcon("piechartIcon.png");
+                    ImageIcon Piecharticon = new ImageIcon("D:\\Codes\\Bank\\BankMain\\src\\piechartIcon.png");
                     JButton Pie = new JButton();
                     Pie.setIcon(Piecharticon);
                     Pie.setOpaque(true);
                     Pie.setFocusable(false);
-                    Pie.setBounds(950,10,60,60);
+                    Pie.setBounds(950, 10, 60, 60);
                     Pie.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
@@ -1243,7 +1255,6 @@ public class BankHome {
                             exp1.setVisible(false);
                             graphs.repaint();
                             graphs.revalidate();
-
 
                             PieDataset dataset = PiecreateDataset();
 
@@ -1266,7 +1277,7 @@ public class BankHome {
                             ChartPanel chartPanel = new ChartPanel(chart);
 
                             piePanel = new JPanel();
-                            piePanel.setBounds(200,110,850,450);
+                            piePanel.setBounds(200, 110, 850, 450);
                             piePanel.setBackground(Color.gray);
                             chartPanel.setPreferredSize(new Dimension(750, 440));
                             piePanel.add(chartPanel);
@@ -1280,7 +1291,7 @@ public class BankHome {
                     chartPanel.setPreferredSize(new java.awt.Dimension(800, 450));
                     pie3d = new JPanel();
 
-                    pie3d.setBounds(250,100,800,550);
+                    pie3d.setBounds(250, 100, 800, 550);
                     pie3d.add(chartPanel);
                     pie3d.setBackground(Color.gray);
 
@@ -1290,7 +1301,6 @@ public class BankHome {
                     graphs.add(pie3d);
 
                     TransactionData.add(graphs);
-
 
                 } else if (Switch.getIcon() == table) {
                     pie3d.setVisible(false);
@@ -1370,8 +1380,10 @@ public class BankHome {
         center.add(TransactionData);
 
     }
-    static void updateChart(String Type,XYSeriesCollection dataset,JFreeChart chart,boolean AccBalType ,String Ctitle) {
-        XYSeries series = fetchTransactionData(Type,AccBalType);
+
+    static void updateChart(String Type, XYSeriesCollection dataset, JFreeChart chart, boolean AccBalType,
+            String Ctitle) {
+        XYSeries series = fetchTransactionData(Type, AccBalType);
 
         dataset.removeAllSeries();
         dataset.addSeries(series);
@@ -1379,8 +1391,8 @@ public class BankHome {
         chart.getXYPlot().setDataset(dataset);
         chart.setTitle(Ctitle);
     }
-    static void updateChart(String query ,XYSeriesCollection dataset,JFreeChart chart ,String Ctitle)
-    {
+
+    static void updateChart(String query, XYSeriesCollection dataset, JFreeChart chart, String Ctitle) {
         XYSeries series = fetchTransactionData(query);
         dataset.removeAllSeries();
         dataset.addSeries(series);
@@ -1388,12 +1400,12 @@ public class BankHome {
         chart.getXYPlot().setDataset(dataset);
         chart.setTitle(Ctitle);
     }
-    static XYSeries fetchTransactionData(String query ) {
+
+    static XYSeries fetchTransactionData(String query) {
         XYSeries series = new XYSeries("ALL");
 
         try (Connection connection = DriverManager.getConnection(Main.DB_URL, Main.USER, Main.PASS);
-             PreparedStatement preparedStatement = connection.prepareStatement(query)
-        ) {
+                PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setInt(1, AccountNumber);
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -1409,15 +1421,16 @@ public class BankHome {
 
         return series;
     }
-    static XYSeries fetchTransactionData(String Type ,Boolean AccBalType) {
+
+    static XYSeries fetchTransactionData(String Type, Boolean AccBalType) {
         XYSeries series = new XYSeries(Type);
 
         try (Connection connection = DriverManager.getConnection(Main.DB_URL, Main.USER, Main.PASS);
-             PreparedStatement preparedStatement = connection.prepareStatement("SELECT TransactionID, Amount FROM Transactions WHERE AccountNumber = ? AND TransactionType = ? AND BalanceType = ?;")
-        ) {
+                PreparedStatement preparedStatement = connection.prepareStatement(
+                        "SELECT TransactionID, Amount FROM Transactions WHERE AccountNumber = ? AND TransactionType = ? AND BalanceType = ?;")) {
             preparedStatement.setInt(1, AccountNumber);
             preparedStatement.setString(2, Type);
-            preparedStatement.setBoolean(3,AccBalType);
+            preparedStatement.setBoolean(3, AccBalType);
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
@@ -1432,6 +1445,7 @@ public class BankHome {
 
         return series;
     }
+
     static void TT(String[][] Hdata, String[] columnHeaders) {
         TransactionData.setBackground(new Color(255, 248, 220));
         TransactionData.setBounds(20, 90, 1250, 600);
@@ -1451,14 +1465,14 @@ public class BankHome {
         center.add(TransactionData);
     }
 
-    static  private CategoryDataset BarfetchTransactionData(boolean Type) {
+    static private CategoryDataset BarfetchTransactionData(boolean Type) {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
         try (Connection connection = DriverManager.getConnection(Main.DB_URL, Main.USER, Main.PASS);
-             PreparedStatement preparedStatement = connection.prepareStatement("SELECT TransactionType, SUM(Amount) as TotalAmount FROM Transactions WHERE AccountNumber = ? AND BalanceType = ? GROUP BY TransactionType;");
-        ) {
+                PreparedStatement preparedStatement = connection.prepareStatement(
+                        "SELECT TransactionType, SUM(Amount) as TotalAmount FROM Transactions WHERE AccountNumber = ? AND BalanceType = ? GROUP BY TransactionType;");) {
             preparedStatement.setInt(1, AccountNumber);
-            preparedStatement.setBoolean(2,Type);
+            preparedStatement.setBoolean(2, Type);
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
@@ -1517,12 +1531,13 @@ public class BankHome {
             e.printStackTrace();
         }
     }
+
     static private PieDataset PiecreateDataset() {
         DefaultPieDataset dataset = new DefaultPieDataset();
 
         try (Connection connection = DriverManager.getConnection(Main.DB_URL, Main.USER, Main.PASS);
-             PreparedStatement preparedStatement = connection.prepareStatement("SELECT TransactionType, SUM(Amount) as TotalAmount FROM Transactions WHERE AccountNumber = ?  GROUP BY TransactionType;");
-        ) {
+                PreparedStatement preparedStatement = connection.prepareStatement(
+                        "SELECT TransactionType, SUM(Amount) as TotalAmount FROM Transactions WHERE AccountNumber = ?  GROUP BY TransactionType;");) {
             preparedStatement.setInt(1, AccountNumber);
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -1538,6 +1553,7 @@ public class BankHome {
 
         return dataset;
     }
+
     private static PieSectionLabelGenerator createLabelGenerator() {
         NumberFormat format = NumberFormat.getNumberInstance();
         format.setMaximumFractionDigits(2);
@@ -1546,15 +1562,16 @@ public class BankHome {
         return new StandardPieSectionLabelGenerator(
                 "{0} = {1}%", format, NumberFormat.getPercentInstance());
     }
+
     private static DefaultPieDataset createDataset3D() {
         DefaultPieDataset dataset = new DefaultPieDataset();
 
         try (Connection connection = DriverManager.getConnection(Main.DB_URL, Main.USER, Main.PASS);
-             PreparedStatement preparedStatement = connection.prepareStatement(
-                     "SELECT SUM(t.Amount) AS TotalTransactionAmount, a.Balance " +
-                             "FROM transactions t " +
-                             "JOIN accounts a ON t.AccountNumber = a.AccountNumber " +
-                             "WHERE t.AccountNumber = ?")) {
+                PreparedStatement preparedStatement = connection.prepareStatement(
+                        "SELECT SUM(t.Amount) AS TotalTransactionAmount, a.Balance " +
+                                "FROM transactions t " +
+                                "JOIN accounts a ON t.AccountNumber = a.AccountNumber " +
+                                "WHERE t.AccountNumber = ?")) {
 
             preparedStatement.setInt(1, AccountNumber);
 
@@ -1582,7 +1599,4 @@ public class BankHome {
                 true,
                 false);
     }
-
 }
-
-
