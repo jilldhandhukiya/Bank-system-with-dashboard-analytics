@@ -1,5 +1,19 @@
 # Bank-system-with-dashboard-analytics
+This is my Java Mini Project for IT 2nd Year 
 
+
+In this Program I have Use MYSQL And Jfree chart Library 
+
+Links :
+Jfree = https://www.jfree.org/jfreechart/download/
+Mysql = https://dev.mysql.com/downloads/mysql/
+
+Requriments :
+1)Redump The Bank.sql File Into the Database Name Bank 
+2)Change your credentials(USER , PASS) from File Main.java to Your Mysql credentials
+
+
+Here Are Some SnapShots from Program
 #Log in
 ![image](https://github.com/jilldhandhukiya2005/Bank-system-with-dashboard-analytics/assets/84569483/958a1ce0-aeea-4fe6-bdf3-86b33df8d6dd)
 
