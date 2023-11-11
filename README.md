@@ -9,7 +9,7 @@ Jfree = https://www.jfree.org/jfreechart/download/
 <br>
 Mysql = https://dev.mysql.com/downloads/mysql/
 
-Requriments :
+<b>Requriments :</b> <br>
 1)Redump The Bank.sql File Into the Database Name 'Bank'
 <br>
 2)Change your credentials(USER , PASS) from File Main.java to Your Mysql credentials
