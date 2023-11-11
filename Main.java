@@ -6,8 +6,8 @@ import javax.swing.*;
 public class Main {
     protected static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     protected static final String DB_URL = "jdbc:mysql://localhost:3306/Bank?useSSL=false";
-    protected static final String USER = "root";
-    protected static final String PASS = "Jill@admin123";
+    protected static final String USER = "";  // Replace with Your UserName
+    protected static final String PASS = "";  // Replace with Your Password
     static String enteredUsername, enteredPassword;
     static JFrame frame;
     static private double userbal = 0;
