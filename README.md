@@ -1,28 +1,27 @@
 # Bank-system-with-dashboard-analytics
 This is my Java Mini Project for IT 2nd Year (Diploma)
-
-
+<br>
 In this Program I have Use MYSQL For Database And Jfree chart Library for Chart creation & analysis
-
+<br>
 <b>Links</b> :<br>
 Jfree = https://www.jfree.org/jfreechart/download/
 <br>
 Mysql = https://dev.mysql.com/downloads/mysql/
 
-<b>Requriments :</b> <br>
+<b>Requriments :</b> <br><br>
 1)Redump The Bank.sql File Into the Database Name 'Bank'
-<br>
+<br><br>
 2)Change your credentials(USER , PASS) from File Main.java to Your Mysql credentials
-<br>
+<br><br>
 3)Unzip the Images.zip file and set all the images path if it is necessary or extract directly into the currect folder 
-<br>
+<br><br>
 4)You have to set CLASSPATH for Jfree chart Library(Package) 
   <br>
   Or also can use some of this methods<br>
   1)Use IDE's Like Intellij Or NetBeans and you can set your Project Structure and add Libraries init <br>
   2)Run by -cp in command Line , For Ex :- <br>
     javac -cp "Your Jfree Lib Path" Main.java
-
+<br>
 
 Here Are Some SnapShots from Program<br>
 #Log in
