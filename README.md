@@ -15,6 +15,13 @@ Mysql = https://dev.mysql.com/downloads/mysql/
 2)Change your credentials(USER , PASS) from File Main.java to Your Mysql credentials
 <br>
 3)Unzip the Images.zip file and set all the images path if it is necessary or extract directly into the currect folder 
+<br>
+4)You have to set CLASSPATH for Jfree chart Library(Package) 
+  <br>
+  Or also can use some of this methods<br>
+  1)Use IDE's Like Intellij Or NetBeans and you can set your Project Structure and add Libraries init <br>
+  2)Run by -cp in command Line , For Ex :- <br>
+    javac -cp "Your Jfree Lib Path" Main.java
 
 
 Here Are Some SnapShots from Program<br>
