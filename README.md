@@ -6,10 +6,12 @@ In this Program I have Use MYSQL And Jfree chart Library
 
 Links :
 Jfree = https://www.jfree.org/jfreechart/download/
+<br>
 Mysql = https://dev.mysql.com/downloads/mysql/
 
 Requriments :
-1)Redump The Bank.sql File Into the Database Name Bank 
+1)Redump The Bank.sql File Into the Database Name 'Bank'
+<br>
 2)Change your credentials(USER , PASS) from File Main.java to Your Mysql credentials
 
 
