@@ -4,7 +4,7 @@ This is my Java Mini Project for IT 2nd Year (Diploma)
 
 In this Program I have Use MYSQL For Database And Jfree chart Library for Chart creation & analysis
 
-Links :
+<b>Links</b> :<br>
 Jfree = https://www.jfree.org/jfreechart/download/
 <br>
 Mysql = https://dev.mysql.com/downloads/mysql/
