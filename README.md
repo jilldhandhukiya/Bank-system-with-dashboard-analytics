@@ -13,15 +13,18 @@ Requriments :
 1)Redump The Bank.sql File Into the Database Name 'Bank'
 <br>
 2)Change your credentials(USER , PASS) from File Main.java to Your Mysql credentials
+<br>
+3)Unzip the Images.zip file and set all the images path if it is necessary or extract directly into the currect folder 
 
 
 Here Are Some SnapShots from Program<br>
 #Log in
+<br>
 ![image](https://github.com/jilldhandhukiya2005/Bank-system-with-dashboard-analytics/assets/84569483/958a1ce0-aeea-4fe6-bdf3-86b33df8d6dd)
 
 
 
-#Main Page
+#Main Page<br>
 
 ![image](https://github.com/jilldhandhukiya2005/Bank-system-with-dashboard-analytics/assets/84569483/485c8b0c-222c-4f0e-86d1-529319b76961)
 
