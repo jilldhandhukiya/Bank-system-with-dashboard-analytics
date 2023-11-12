@@ -7,8 +7,8 @@ import java.awt.event.KeyEvent;
 
 class LoginFrame extends JFrame implements ActionListener {
     static LoginFrame loginFrame;
-    static ImageIcon eyeClosed = new ImageIcon("D:\\Codes\\Bank\\BankMain\\src\\eye-opened.png");
-    static ImageIcon eyeOpen = new ImageIcon("D:\\Codes\\Bank\\BankMain\\src\\eye-closed.png");
+    static ImageIcon eyeClosed = new ImageIcon("eye-opened.png");
+    static ImageIcon eyeOpen = new ImageIcon("eye-closed.png");
     Container container = getContentPane();
     static JLabel userLabel = new JLabel("USER ID : ");
     static JLabel passwordLabel = new JLabel("PASSWORD : ");
@@ -23,7 +23,7 @@ class LoginFrame extends JFrame implements ActionListener {
         loginFrame = this;
         setLayoutManager();
         setLocationAndSize();
-        ImageIcon backgroundIcon = new ImageIcon("D:\\Codes\\Bank\\BankMain\\src\\Bank.png");
+        ImageIcon backgroundIcon = new ImageIcon("Bank.png");
         backgroundLabel = new JLabel(backgroundIcon);
         backgroundLabel.setBounds(0, 0, 1400, 700);
         container.add(backgroundLabel);

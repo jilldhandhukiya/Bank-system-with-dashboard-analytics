@@ -11,7 +11,7 @@ public class Main {
     static String enteredUsername, enteredPassword;
     static JFrame frame;
     static private double userbal = 0;
-    static ImageIcon bankIcon = new ImageIcon("D:\\Codes\\Bank\\BankMain\\src\\mainlablebank.png");
+    static ImageIcon bankIcon = new ImageIcon("mainlablebank.png");
     static String Firsnameofuser = "";
 
     public static void main(String[] args) {
